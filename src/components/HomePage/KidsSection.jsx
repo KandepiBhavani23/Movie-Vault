@@ -11,7 +11,7 @@ const KidsSection = () => {
     <ContentWithVideo
       title={kidsTitle}
       description={kidsDescription}
-      // videoSrc={kids}
+      videoSrc="https://res.cloudinary.com/dassxiq3z/video/upload/f_auto:video,q_auto/v1/MovieVault/kids"
       swapOrder={false}
     />
   );
