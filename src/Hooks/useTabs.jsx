@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const useTabs = () => {
   const [tabs, setTabs] = useState(
@@ -13,17 +15,21 @@ const useTabs = () => {
   }, [tabs]);
 
   const addTab = () => {
-    setTabs([...tabs, { name: `Tab ${tabs.length + 1}`, searchText: "" }]);
+    const newTabName = `Tab ${tabs.length + 1}`;
+    setTabs([...tabs, { name: newTabName, searchText: "" }]);
     setActiveTab(tabs.length);
+    toast.success(`"${newTabName}" added successfully!`);
   };
 
   const deleteTab = (index) => {
     if (index === 0) return;
+    const deletedTabName = tabs[index].name;
     const newTabs = tabs.filter((_, tabIndex) => tabIndex !== index);
     setTabs(newTabs);
     if (activeTab >= index && activeTab > 0) {
       setActiveTab(activeTab - 1);
     }
+    toast.error(`"${deletedTabName}" deleted successfully!`);
   };
 
   const updateTab = (index, newSearchText) => {

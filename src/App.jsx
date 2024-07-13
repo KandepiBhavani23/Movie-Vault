@@ -3,6 +3,8 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import store from "./redux/store";
 import { Suspense, lazy } from "react";
 import "./App.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const HomePage = lazy(() => import("./components/HomePage/HomePage.jsx"));
 const Header = lazy(() => import("./components/Header.jsx"));
@@ -44,6 +46,7 @@ const AppLayout = () => {
     <div className="w-[100%] min-h-screen bg-black ">
       <Suspense fallback={<div>Loading...</div>}>
         <Header />
+
         <Outlet />
         <Footer />
       </Suspense>
@@ -57,6 +60,17 @@ const BrowseAppLayout = () => {
       <Suspense fallback={<div>Loading...</div>}>
         <BrowsePageHeader />
         <div className="py-[5%]">
+          <ToastContainer
+            position="top-center"
+            autoClose={3000}
+            hideProgressBar
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
           <Outlet />
         </div>
       </Suspense>
